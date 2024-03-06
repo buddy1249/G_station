@@ -1,0 +1,53 @@
+{% extends 'base.html'%}
+
+ {% block title %}Сутки{%endblock%}
+
+{%block content%}
+<h1> Объем за месяц </h1>
+
+<p> Работа за сутки</p>
+
+<table class="table">
+	<thead>
+		
+		<tr>
+			<th>Итого</th>
+			<th>{{number_of_refills_sum_V_own_month}}</th>
+			<th>{{sum_V_own_month}}</th>			
+			<th>{{number_of_refills_V_commercial_month}}</th>
+			<th>{{sun_V_commercial_month}}</th>				
+			<th>{{sum_number_of_refills_month}}</th>
+			<th>{{sum_V_month}}</th>
+		</tr>
+	</thead>
+	<thead>
+		<tr>
+			<th>дата</th>
+			<th>Соб_шт</th>
+			<th>Соб_м3</th>			
+			<th>Коммерч_шт</th>
+			<th>Коммерч_м3</th>				
+			<th>Итого/шт</th>
+			<th>Итого/М3</th>
+		</tr>
+	</thead>
+<tbody>
+	{% for row in data %}	
+    <tr>
+        <td>{{row['date']}}</td>
+		<td>{{row['number of refills own_day']}}</td>
+		<td>{{row['V_own_day']}}</td>		
+		<td>{{row['number of refills commercial_day']}}</td>
+		<td>{{row['V_commercial_day']}}</td>
+		<td>{{row['number of refills in_total']}}</td>
+		<td>{{row['V in_total']}}</td>	
+
+							
+    </tr>	
+	{% endfor %}	
+		
+{% endblock %}
+		</tbody>
+</table>
+
+

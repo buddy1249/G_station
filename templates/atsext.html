@@ -1,0 +1,63 @@
+
+{% extends 'base.html'%}
+
+ {% block title %}АТС{%endblock%}
+{%block content%}
+<tr>
+        <td> Сторонний транспорт. Дата: {{dat}}  количество заправок: {{n}} Объем суммарно за смену: {{t}} м3</td>
+    </tr>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>дата</th>
+			<th>Организац/физ лицо</th>
+			<th>объём м3</th>
+			<th>сумма для физ.лиц</th>
+			<th>примечание</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		{% for payment in commercials %}
+    <tr>
+        <td>{{payment.id}}</td>
+        <td>{{payment.date}}</td>
+        <td>{{payment.name}}</td>
+        <td>{{payment.amount}}</td>
+        <td>{{payment.money}}</td>
+        <td>{{payment.note}}</td>
+
+    </tr>
+
+
+{%endfor%}
+
+	</tbody>
+
+</table>
+
+
+
+	<tbody>
+
+
+    <form method="POST">
+    <input  name="date" placeholder="Дата" class="form-control" size="15">
+    <input  name="name" placeholder="Наим организ/физ лицо" class="form-control" size="20">
+    <input name="amount" placeholder="Объем м3"  class="form-control" size="10">
+    <input name="money" placeholder="Сумма для физ лиц"  class="form-control" size="20">
+    <input name="note" placeholder="Примечание"  class="form-control" size="20">
+
+    <input type="submit" class="btn btn-success" value="Отправить">
+
+</form>
+
+	</tbody>
+</table>
+
+
+
+{% endblock %}
+

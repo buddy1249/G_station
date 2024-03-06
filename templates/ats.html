@@ -1,0 +1,71 @@
+{% extends 'base.html'%}
+
+ {% block title %}АТС{%endblock%}
+{%block content%}
+<tr>
+        <td> Собственный транспорт. Дата: {{dat}}  количество заправок: {{n}} Объем суммарно за смену: {{t}} м3</td>
+    </tr>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>дата</th>
+			<th>№ авто</th>
+			<th>№ пут листа</th>
+			<th>ПАГЗ/МКЗ</th>
+			<th>объём м3</th>
+			<th>№ колонны</th>
+			<th>примечание</th>
+		</tr>
+
+
+	</thead>
+
+
+	<tbody>
+		{% for expense in owns %}
+    <tr>
+        <td>{{expense.id}}</td>
+        <td>{{expense.date}}</td>
+        <td>{{expense.name}}</td>
+        <td>{{expense.waybill}}</td>
+        <td>{{expense.driver}}</td>
+        <td>{{expense.amount}}</td>
+        <td>{{expense.column}}</td>
+        <td>{{expense.note}}</td>
+
+    </tr>
+{%endfor%}
+
+	</tbody>
+
+</table>
+
+
+<table class="table">
+
+
+
+	<tbody>
+
+    <form method="POST">
+    <input  name="date" placeholder="Дата" class="form-control" size="15">
+    <input  name="name" placeholder="Н.знак" class="form-control" size="15">
+    <input  name="waybill"placeholder="Путев.лист" class="form-control" size="20">
+    <input  name="driver" placeholder="пагз/мкз" class="form-control" size="20">
+    <input name="amount" placeholder="Объем м3"  class="form-control" size="10">
+    <input name="column" placeholder="Колонна"  class="form-control" size="10">
+    <input name="note" placeholder="Примечание"  class="form-control" size="20">
+
+    <input type="submit" class="btn btn-success" value="Отправить">
+
+</form>
+
+	</tbody>
+</table>
+
+
+
+
+{% endblock %}

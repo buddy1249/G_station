@@ -1,0 +1,4 @@
+"""Пакеты Python, от которых зависит приложение"""
+flask
+peewee
+datetime
