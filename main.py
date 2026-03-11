@@ -11,9 +11,9 @@ def index():
     return render_template('/index2.html')  
     
 
-"""Обработчик, работа за сутки.""" 
 @app.route('/day')    
 def day():
+    """Обработчик, работа за сутки."""
     _,day_count = calendar.monthrange(2024, 2)
     begin_date = date(2024, 2, 1)
     end_date = date(2024, 2, day_count)
@@ -59,9 +59,9 @@ def day():
                            sum_V_month=sum_V_month)   
 
 
-"""Обработчик для собственного транспорта ОБЩИЙ."""
 @app.route('/ats', methods=['POST', 'GET']) 
 def ats():
+    """Обработчик для собственного транспорта ОБЩИЙ."""
     if request.method == 'POST':
         Own_transport(date=request.form['date'], name=request.form['name'], \
                       waybill=request.form['waybill'], driver=request.form['driver'], \
@@ -72,15 +72,15 @@ def ats():
     return render_template('ats.html', owns=owns)
 
 
-"""Перенаправление на обработчик для собственного транспорта смена."""
 @app.route('/atss') 
 def ats_today():
+    """Перенаправление на обработчик для собственного транспорта смена."""
     return redirect(url_for('dat', dat=datetime.date.today().strftime('%d.%m.%Y')))
 
 
-"""Обработчик для собственного  транспорта смена."""
 @app.route('/ats/<dat>', methods=['POST', 'GET']) 
 def dat(dat):
+    """Обработчик для собственного  транспорта смена."""
     if request.method == 'POST' and request.form['date'] == dat:
         amount = request.form['amount']
         try:
@@ -105,9 +105,9 @@ def dat(dat):
     return render_template('/ats.html', owns=owns, dat=dat, n=n,t=t)
 
 
-"""Обработчик для стороннего транспорта ОБЩИЙ."""
 @app.route('/atsext', methods=['POST', 'GET']) 
 def atsext():
+    """Обработчик для стороннего транспорта ОБЩИЙ."""
     if request.method == 'POST':
         Commercial_transport(date=request.form['date'], name=request.form['name'], \
                              amount=request.form['amount'], money=request.form['money'], \
@@ -118,15 +118,15 @@ def atsext():
     return render_template('atsext.html', commercials=commercials)
 
 
-"""Перенаправление на обработчик для стороннего транспорта смена."""
 @app.route('/ext') 
 def ats_today_ext():
+    """Перенаправление на обработчик для стороннего транспорта смена."""
     return redirect(url_for('dat1', dat1=datetime.date.today().strftime('%d.%m.%Y')))
 
 
-"""Обработчик для стороннего транспорта смена."""
 @app.route('/atsext/<dat1>', methods=['POST', 'GET']) 
 def dat1(dat1):
+    """Обработчик для стороннего транспорта смена."""
     if request.method == 'POST' and request.form['date'] == dat1:
         if request.form['name'] == 'Хлебозавод' or request.form['name'] == 'Дом быта' \
         or request.form['name'] == 'Автобаза №3' or request.form['name'] == 'Физлицо' \
