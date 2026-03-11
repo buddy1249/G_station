@@ -13,7 +13,7 @@ def index():
 
 @app.route('/day')    
 def day():
-    """Обработчик, работа за сутки."""
+    """Объем общий: за месяц, по суткам и нарастающи итогом."""
     _,day_count = calendar.monthrange(2024, 2)
     begin_date = date(2024, 2, 1)
     end_date = date(2024, 2, day_count)
@@ -61,7 +61,9 @@ def day():
 
 @app.route('/ats', methods=['POST', 'GET']) 
 def ats():
-    """Обработчик для собственного транспорта ОБЩИЙ."""
+    """Обработчик для собственного транспорта ОБЩИЙ.
+       Объем суммарно за смену в течении месяца."""
+    if request.method == 'POST':
     if request.method == 'POST':
         Own_transport(date=request.form['date'], name=request.form['name'], \
                       waybill=request.form['waybill'], driver=request.form['driver'], \
@@ -80,7 +82,8 @@ def ats_today():
 
 @app.route('/ats/<dat>', methods=['POST', 'GET']) 
 def dat(dat):
-    """Обработчик для собственного  транспорта смена."""
+    """Шаблон для отображения заправок собственного транспорта
+       в течении смены с полями ввода данных"""
     if request.method == 'POST' and request.form['date'] == dat:
         amount = request.form['amount']
         try:
@@ -107,7 +110,8 @@ def dat(dat):
 
 @app.route('/atsext', methods=['POST', 'GET']) 
 def atsext():
-    """Обработчик для стороннего транспорта ОБЩИЙ."""
+    """Обработчик для стороннего транспорта ОБЩИЙ.
+       Объем суммарно за смену в течении месяца."""
     if request.method == 'POST':
         Commercial_transport(date=request.form['date'], name=request.form['name'], \
                              amount=request.form['amount'], money=request.form['money'], \
@@ -126,7 +130,8 @@ def ats_today_ext():
 
 @app.route('/atsext/<dat1>', methods=['POST', 'GET']) 
 def dat1(dat1):
-    """Обработчик для стороннего транспорта смена."""
+    """"""Шаблон для отображения заправок стороннего транспорта
+       в течении смены с полями ввода данных""""""
     if request.method == 'POST' and request.form['date'] == dat1:
         if request.form['name'] == 'Хлебозавод' or request.form['name'] == 'Дом быта' \
         or request.form['name'] == 'Автобаза №3' or request.form['name'] == 'Физлицо' \
