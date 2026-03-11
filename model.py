@@ -16,6 +16,8 @@ class BaseModel(Model):
 
 
 class Own_transport(BaseModel):
+    """Модель (таблица) в БД для собственного транспорта."""
+    if request.method == 'POST':
     date = CharField()
     name = CharField()
     waybill = CharField()
@@ -29,6 +31,7 @@ class Own_transport(BaseModel):
 
 
 class Commercial_transport(BaseModel):
+    """Модель (таблица) в БД для стороннего транспорта."""
     date = CharField()
     name = CharField()
     amount = FloatField()
@@ -43,3 +46,4 @@ class Commercial_transport(BaseModel):
 
         
         
+
