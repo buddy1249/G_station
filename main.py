@@ -63,8 +63,7 @@ def day():
 def ats():
     """Обработчик для собственного транспорта ОБЩИЙ.
        Объем суммарно за смену в течении месяца."""
-    if request.method == 'POST':
-    if request.method == 'POST':
+    if request.method == 'POST':    
         Own_transport(date=request.form['date'], name=request.form['name'], \
                       waybill=request.form['waybill'], driver=request.form['driver'], \
                       amount=request.form['amount'], column=request.form['column'], \
@@ -130,8 +129,8 @@ def ats_today_ext():
 
 @app.route('/atsext/<dat1>', methods=['POST', 'GET']) 
 def dat1(dat1):
-    """"""Шаблон для отображения заправок стороннего транспорта
-       в течении смены с полями ввода данных""""""
+    """Шаблон для отображения заправок стороннего транспорта
+       в течении смены с полями ввода данных"""
     if request.method == 'POST' and request.form['date'] == dat1:
         if request.form['name'] == 'Хлебозавод' or request.form['name'] == 'Дом быта' \
         or request.form['name'] == 'Автобаза №3' or request.form['name'] == 'Физлицо' \
